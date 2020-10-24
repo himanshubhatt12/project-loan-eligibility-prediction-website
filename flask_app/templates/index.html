@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}My Loan Predictor{% endblock %}
+{% block head %}
+<style>
+	body ul.main-navbar li.predict a {
+		background: linear-gradient(45deg, #4FC3F7, #26C6DA);
+	}
+	body ul.mobile-navbar li.predict-mob a {
+		background: linear-gradient(45deg, #4FC3F7, #26C6DA);
+	}
+</style>
+{% endblock %}
+{% block content %}
+	<div class="content-section-form" >
+		{% if pred %}
+			<div class="message">
+				<p>{{pred_text}}</p>
+				<button class = "hide">OK</button>
+			</div>
+		{% endif %}
+		<div class = "form-box" >
+			<form  class = "pred-form" method = "POST" action = "{{url_for('prediction')}}">
+				<div>
+					<label for="email">Email</label>
+					<input type="email" id = "email" name = "email" class = "email-field" required>
+				</div>
+				<div>
+					<label>Are you married?</label>
+					<span>
+						<label class="container">Yes
+						<input type="radio" id = "myes"
+						 name="marital-status" value="1" checked required>
+						 <span class="checkmark"></span>
+						</label>
+					</span>
+					<span>
+						<label class="container">No
+						<input type="radio" id = "mno"
+						 name="marital-status" value="0" required>
+						 <span class="checkmark"></span>
+						</label>
+					</span>
+				</div>
+				<div>
+					<label>Education:</label>
+					<span>
+						<label class="container">Graduate
+							<input type="radio" id = "eyes"
+							 name="education" value="1" checked required>
+							<span class="checkmark"></span>
+						</label>
+					</span>
+					<span>
+						<label class="container">Not Graduate
+						<input type="radio" id = "eno"
+						 name="education" value="0" required>
+						 <span class="checkmark"></span>
+						</label>
+					</span>
+				</div>
+				<div>
+					<label>Gender:</label>
+					<span>
+						<label class="container">Male
+						<input type="radio" id = "male"
+						 name="gender" value="1" checked required>
+						 <span class="checkmark"></span>
+						</label>
+					</span>
+					<span>
+						<label class="container"> Female
+						<input type="radio" id = "female"
+						 name="gender" value="0" required>
+						<span class="checkmark"></span>
+						</label>
+					</span>
+				</div>
+				<p>Select number of dependents:</p>
+				<div>
+					<span>
+						<label class="container">Zero
+							<input type="radio" id="zero"
+							 name="dependents" value="0" required checked>
+							 <span class="checkmark"></span>
+						</label>
+					</span>
+					<span>
+						<label class="container">One
+							<input type="radio" id="one"
+							 name="dependents" value="1" required>
+							 <span class="checkmark"></span>
+						</label>
+					</span>
+					<span>
+						<label class="container">Two
+							<input type="radio" id="two"
+							 name="dependents" value="2" required>
+							<span class="checkmark"></span> 
+						</label>
+					</span>
+					<span>
+						<label class="container">Three or more
+							<input type="radio" id="three"
+							 name="dependents" value="3" required>
+							 <span class="checkmark"></span>
+						 </label>
+					</span>
+				</div>
+				<p>
+					<label for="prop-area">Choose property area:</label>
+					<select name="prop-area" id="prop-area" required class="select-field"> 
+					  <option value="Urban">Urban</option>
+					  <option value="Rural">Rural</option>
+					  <option value="SemiUrban">SemiUrban</option>
+					</select>
+				</p>
+
+				<div class = "make-vertical">
+					<label for="income-applicant">Applicant's monthly income in Rupees</label>
+					<input type= "number" id = "income-applicant" name = "income-applicant" required class = "number-field">
+				</div>
+				<div class = "make-vertical">
+					<label for="income-coapplicant">Coapplicant's monthly income in Rupees</label>
+					<input type= "number" id = "income-coapplicant" name = "income-coapplicant" class = "number-field" required>
+				</div>
+				<div class = "make-vertical">
+					<label for="loan-amt">Loan Amount in Rupees</label>
+					<input type="number" id = "loan-amt" name = "loan-amt" required class = "number-field">
+				</div>
+				<div class = "make-ver-center">
+					<label for = "loan-term">Loan term(in months)</label>
+					<span class = "loan-term-value"></span>
+					<input type="range" min = "0" max = "360" step = "6" value = "360" required name = "loan-term">
+				</div>
+				<div>
+					<label class = "credit-hist-label">Credit History</label>
+					<span>
+						<label class="container">0
+						<input type="radio" id = "credit-hist-0"
+						 name="credit-hist" value="0" checked required>
+						 <span class="checkmark"></span>
+						 </label>
+					</span>
+					<span>
+						<label class="container">1
+						<input type="radio" id = "credit-hist-1"
+						 name="credit-hist" value="1" required>
+						 <span class="checkmark"></span>
+						 </label>
+					</span>
+				</div>
+				<div>
+					<label class = "self-emp-label">Are you self employed?</label>
+					<span>
+						<label class="container">Yes
+							<input type="radio" id = "eyes"
+							 name="self-emp" value="1" checked required>
+							<span class="checkmark"></span>
+						</label>
+					</span>
+					<span>
+						<label class="container">No
+							<input type="radio" id = "eno"
+							 name="self-emp" value="0" required>
+							 <span class="checkmark"></span>
+						</label>
+					</span>
+				</div>
+				<p class = "form-submit">
+					<input type="submit" value = "Predict" class = "submit-field">
+				</p>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript" src = "{{url_for('static', filename = 'index-script.js')}}"></script>
+{% endblock %}

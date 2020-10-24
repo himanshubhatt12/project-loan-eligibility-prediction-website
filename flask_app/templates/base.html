@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title%} {%endblock%}</title>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	{% block head %}
+	{% endblock %}
+</head>
+<body>
+	<ul class = "main-navbar">
+		<li class = "loan-pred"><a href="{{url_for('home_page')}}">Loan Prediction</a></li>
+		<li class = "predict"><a href="{{url_for('home_page')}}">Predict</a></li>
+		<li class = "data-insights"><a href="{{url_for('data_insights')}}">Data Insights</a></li>
+		<li class = "menu-icon">
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+	</ul>
+	<ul class = "mobile-navbar">
+		<li class = "predict-mob"><a href="{{url_for('home_page')}}">Predict</a></li>
+		<li class = "data-insights-mob"><a href="{{url_for('data_insights')}}">Data Insights</a></li>
+	</ul>
+	{% block content %}
+	{% endblock %}
+	<script type="text/javascript" src = "{{url_for('static', filename = 'base-script.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Data Insights {% endblock %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Vampiro+One&display=swap" rel="stylesheet">
+{% endblock %}
+<style>
+	body ul.main-navbar li.data-insights a {
+	background: linear-gradient(45deg, #4FC3F7, #26C6DA);
+	}
+
+body ul.mobile-navbar li.data-insights-mob a {
+	background: linear-gradient(45deg, #4FC3F7, #26C6DA);
+	}
+</style>
+{% block content%}
+<div class="image-section">
+
+	<p class = "head1">Univariate Analysis</p>
+	<div class="uni-carousel carousel" onselectstart = "return false" oncontextmenu = "return false" onselect = "return false" ondragstart="return false">
+		<img src="static/plots/Univariate_Analysis/ApplicantIncomeBinned.jpg" alt="Univariate Analysis">
+		<div class="next">></div>
+		<div class="prev"><</div>
+	</div>
+
+	<p>Bivariate Analysis</p>
+	<div class="bi-carousel carousel" onselectstart = "return false" oncontextmenu = "return false" onselect = "return false" ondragstart="return false">
+		<img src="static/plots/Bivariate_Analysis/LoanStatusvsGender.jpg" alt="Bivariate Analysis">
+		<div class="next">></div>
+		<div class="prev"><</div>
+	</div>
+
+</div>
+
+<script type="text/javascript" src = "{{url_for('static', filename = 'data-script.js')}}"></script>
+{% endblock %}
